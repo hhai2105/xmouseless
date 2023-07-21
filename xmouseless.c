@@ -228,18 +228,7 @@ void handle_key(KeyCode keycode, Bool is_press) {
 
     /* shell and exit bindings only on key release */
     if (!is_press) {
-        /* shell bindings */
-        for (i = 0; i < LENGTH(shell_bindings); i++) {
-            if (shell_bindings[i].keysym == keysym) {
-                printf("executing: %s\n", shell_bindings[i].command);
-                if (fork() == 0) {
-                    system(shell_bindings[i].command);
-                    exit(EXIT_SUCCESS);
-                }
-            }
-        }
-
-        /* exit */ 
+        /* exit */
         for (i = 0; i < LENGTH(exit_keys); i++) {
             if (exit_keys[i] == keysym) {
                 close_x(EXIT_SUCCESS);
